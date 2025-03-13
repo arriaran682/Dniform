@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Formulario de DNI</h2>
+  <form [formGroup]="dniForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Nombre:</label>
+      <input type="text" formControlName="nombre">
+      <span *ngIf="dniForm.get('nombre')?.invalid && dniForm.get('nombre')?.touched">Requerido</span>
+    </div>
+
+    <div>
+      <label>Apellidos:</label>
+      <input type="text" formControlName="apellidos">
+      <span *ngIf="dniForm.get('apellidos')?.invalid && dniForm.get('apellidos')?.touched">Requerido</span>
+    </div>
+
+    <div>
+      <label>Número de DNI:</label>
+      <input type="text" formControlName="dni">
+      <span *ngIf="dniForm.get('dni')?.invalid && dniForm.get('dni')?.touched">Debe tener 8 dígitos y una letra</span>
+    </div>
+
+    <div>
+      <label>Fecha de Nacimiento:</label>
+      <input type="date" formControlName="fechaNacimiento">
+      <span *ngIf="dniForm.get('fechaNacimiento')?.invalid && dniForm.get('fechaNacimiento')?.touched">Requerido</span>
+    </div>
+
+    <div>
+      <label>Fecha de Caducidad:</label>
+      <input type="date" formControlName="fechaCaducidad">
+      <span *ngIf="dniForm.get('fechaCaducidad')?.invalid && dniForm.get('fechaCaducidad')?.touched">Requerido</span>
+    </div>
+
+    <div>
+      <label>Nacionalidad:</label>
+      <input type="text" formControlName="nacionalidad">
+      <span *ngIf="dniForm.get('nacionalidad')?.invalid && dniForm.get('nacionalidad')?.touched">Requerido</span>
+    </div>
+
+    <div>
+      <label>Sexo:</label>
+      <select formControlName="sexo">
+        <option value="">Selecciona...</option>
+        <option value="M">Masculino</option>
+        <option value="F">Femenino</option>
+        <option value="O">Otro</option>
+      </select>
+      <span *ngIf="dniForm.get('sexo')?.invalid && dniForm.get('sexo')?.touched">Requerido</span>
+    </div>
+
+    <button type="submit" [disabled]="dniForm.invalid">Enviar</button>
+
+    <div class="file-buttons">
+      <button type="button" (click)="guardarDatos()">Guardar como JSON</button>
+      <input type="file" (change)="cargarArchivo($event)">
+    </div>
+  </form>
+</div>
+
